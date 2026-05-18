@@ -71,8 +71,8 @@
   programs.git = {
     enable = true;
     settings = {
-      userName = "navinate";
-      userEmail = "treycluff@gmail.com";
+      user.name = "navinate";
+      user.email = "treycluff@gmail.com";
     };
   };
 }

@@ -31,6 +31,8 @@
         "files.trimTrailingWhitespace" = true;
         # Use Wayland for Codium (smoother on Hyprland)
         "window.systemColorTheme" = "dark";
+
+        "workbench.sideBar.location": "right";
       };
     };
   };
