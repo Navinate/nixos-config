@@ -6,7 +6,7 @@ in
   services.mako = {
     enable = true;
     settings = {
-      font             = "JetBrainsMono Nerd Font 11";
+      font             = "FiraCode Nerd Font Ret 11";
       background-color = "#${colors.base}";
       text-color       = "#${colors.text}";
       border-color     = "#${colors.mauve}";

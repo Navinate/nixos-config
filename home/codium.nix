@@ -21,12 +21,12 @@
 
       userSettings = {
         "workbench.colorTheme" = "Catppuccin Mocha";
-        "editor.fontFamily"    = "'JetBrainsMono Nerd Font', monospace";
-        "editor.fontSize"      = 13;
+        "editor.fontFamily"    = "'FiraCode Nerd Font Ret', monospace";
+        "editor.fontSize"      = 14;
         "editor.fontLigatures" = true;
         "editor.formatOnSave"  = true;
         "editor.minimap.enabled" = false;
-        "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font'";
+        "terminal.integrated.fontFamily" = "'FiraCode Nerd Font Ret'";
         "window.titleBarStyle" = "custom";
         "files.trimTrailingWhitespace" = true;
         # Use Wayland for Codium (smoother on Hyprland)

@@ -38,9 +38,9 @@
     };
   };
 
-  # System-wide fonts (used by waybar, kitty, etc.)
+  # System-wide fonts (used by waybar, ghostty, etc.)
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
     noto-fonts
     noto-fonts-color-emoji
   ];

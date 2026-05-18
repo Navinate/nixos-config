@@ -4,7 +4,7 @@
     ./theme.nix
     ./hyprland.nix
     ./waybar.nix
-    ./kitty.nix
+    ./ghostty.nix
     ./codium.nix
     ./firefox.nix
     ./mako.nix
@@ -70,7 +70,9 @@
 
   programs.git = {
     enable = true;
-    userName = "trey";
-    userEmail = "trey@example.com"; # change me
+    settings = {
+      userName = "navinate";
+      userEmail = "treycluff@gmail.com";
+    };
   };
 }
