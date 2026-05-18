@@ -32,7 +32,7 @@
         # Use Wayland for Codium (smoother on Hyprland)
         "window.systemColorTheme" = "dark";
 
-        "workbench.sideBar.location": "right";
+        "workbench.sideBar.location" = "right";
       };
     };
   };
