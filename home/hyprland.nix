@@ -54,6 +54,7 @@ in
         "mako"
         "wl-paste --watch cliphist store"
         "lxqt-policykit-agent"
+        "blueman-applet"
       ];
 
       # ---- Look & feel ----
@@ -82,7 +83,7 @@ in
 
       decoration = {
         rounding = 6;
-        # Effects off for VBox — too expensive in software.
+        # Turn off when on VM
         blur.enabled   = true;
         shadow.enabled = true;
       };
@@ -170,6 +171,7 @@ in
       # ---- Window rules ----
       windowrulev2 = [
         "float,class:(pavucontrol)"
+        "float,class:(.blueman-manager-wrapped)"
         "float,class:(hyprsysteminfo)"
       ];
     };
