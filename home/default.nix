@@ -62,6 +62,7 @@
     discord
     spotify
     obsidian
+    mission-center
   ];
 
   programs.home-manager.enable = true;
