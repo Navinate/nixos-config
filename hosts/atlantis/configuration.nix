@@ -24,7 +24,7 @@
   users.users.kida = {
     isNormalUser = true;
     description = "kida";
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
     shell = pkgs.bash;
   };
 

@@ -10,5 +10,7 @@
     };
   };
 
+  hardware.xpadneo.enable = true;
+
   services.blueman.enable = true;
 }
