@@ -51,7 +51,7 @@
     # --- Languages (add as needed) ---
     go
     nodejs_22
-    # godot_4  # uncomment when you want gdscript work in the VM
+    # godot_4  # uncomment when you want gdscript work
 
     # --- AI stuff ---
     claude-code

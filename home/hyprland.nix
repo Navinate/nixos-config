@@ -56,9 +56,18 @@ in
       ];
 
       # ---- Look & feel ----
-      # Animations OFF — VirtualBox software rendering can't keep up.
-      # Flip `enabled = true` once on bare metal.
-      animations.enabled = false;
+      animations = {
+        enabled = true;
+        # Syntax: animation = NAME, ONOFF, SPEED, CURVE
+        animation = [
+          "windows, 1, 3, default"       # Window open/close/move
+          "windowsIn, 1, 3, default, slide"  # Window opening
+          "windowsOut, 1, 3, default, slide" # Window closing
+          "workspaces, 1, 4, default"      # Workspace switching
+          "fade, 1, 2, default"            # Fading elements
+          "specialWorkspace, 1, 1.5, default, fade"
+        ];
+      };
 
       general = {
         gaps_in            = 5;
@@ -99,18 +108,18 @@ in
       bind =
         [
           # Apps
-          "$mod, Return,       exec, $terminal"
-          "$mod, B,            exec, $browser"
-          "$mod, E,            exec, $files"
-          "$mod, Space,        exec, $launcher"
-          "$mod, L,            exec, hyprlock"
+          "$mod, Return,        exec, $terminal"
+          "$mod, B,             exec, $browser"
+          "$mod, E,             exec, $files"
+          "$mod, Space,         exec, $launcher"
+          "$mod, L,             exec, hyprlock"
           # hyprshutdown isn't in nixpkgs 25.11 — quick wofi-based power menu instead
           ''$mod SHIFT, Escape, exec, echo -e "lock\nlogout\nreboot\nshutdown" | wofi --dmenu | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac' ''
-          "$mod, I,            exec, hyprsysteminfo"
-          "$mod SHIFT, V,      exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+          "$mod, I,             exec, hyprsysteminfo"
+          "$mod SHIFT, V,       exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
 
           # Screenshots
-          ", Print,         exec, hyprshot -m region"
+          "$mod SHIFT, s,   exec, hyprshot -m region"
           "SHIFT, Print,    exec, hyprshot -m window"
           "CTRL, Print,     exec, hyprshot -m output"
 
