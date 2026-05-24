@@ -9,6 +9,7 @@
     ./firefox.nix
     ./zen.nix
     ./mako.nix
+    ./darkman.nix
     ./claude-code.nix
     ./zed.nix
   ];

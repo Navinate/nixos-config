@@ -120,6 +120,7 @@ in
           ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | wofi --dmenu | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac' ''
           "$mod, I,             exec, hyprsysteminfo"
           "$mod SHIFT, V,       exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+          "$mod, T,             exec, darkman toggle"
 
           # Screenshots
           "$mod SHIFT, s,   exec, hyprshot -m region"
