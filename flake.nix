@@ -14,7 +14,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./hosts/nixtest/configuration.nix
+        ./hosts/atlantis/configuration.nix
 
         home-manager.nixosModules.home-manager
         {
@@ -23,7 +23,7 @@
             useUserPackages = true;
             backupFileExtension = "backup";
             extraSpecialArgs = { inherit inputs; };
-            users.trey = import ./home;
+            users.kida = import ./home;
           };
         }
       ];

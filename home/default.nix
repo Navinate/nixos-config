@@ -11,8 +11,8 @@
     ./claude-code.nix
   ];
 
-  home.username = "trey";
-  home.homeDirectory = "/home/trey";
+  home.username = "kida";
+  home.homeDirectory = "/home/kida";
   home.stateVersion = "25.11";
 
   # User-scope packages.

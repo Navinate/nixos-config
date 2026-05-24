@@ -25,9 +25,10 @@ in
 
       # ---- Env vars inside the Hyprland session ----
       env = [
-        "WLR_NO_HARDWARE_CURSORS,1"
-        "WLR_RENDERER_ALLOW_SOFTWARE,1"
-	"LIBGL_ALWAYS_SOFTWARE,1"
+        # Uncomment these out when on virtual box
+	# "WLR_NO_HARDWARE_CURSORS,1"
+        # "WLR_RENDERER_ALLOW_SOFTWARE,1"
+	# "LIBGL_ALWAYS_SOFTWARE,1"
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
         "GDK_BACKEND,wayland,x11"
@@ -45,7 +46,7 @@ in
       # ---- Look & feel ----
       # Animations OFF — VirtualBox software rendering can't keep up.
       # Flip `enabled = true` once on bare metal.
-      animations.enabled = false;
+      animations.enabled = true;
 
       general = {
         gaps_in            = 5;
@@ -60,8 +61,8 @@ in
       decoration = {
         rounding = 6;
         # Effects off for VBox — too expensive in software.
-        blur.enabled   = false;
-        shadow.enabled = false;
+        blur.enabled   = true;
+        shadow.enabled = true;
       };
 
       input = {
