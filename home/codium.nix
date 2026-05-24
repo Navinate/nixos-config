@@ -32,6 +32,7 @@
 
         "workbench.sideBar.location" = "right";
         "git.autofetch" = true;
+        "git.confirmSync" = false;
       };
     };
   };
