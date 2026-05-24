@@ -5,7 +5,7 @@ default:
 
 # Rebuild & switch the system
 rebuild:
-    sudo nixos-rebuild switch --flake .#atlantis --extra-experimental-features 'nix-command flakes'
+    sudo nixos-rebuild switch --flake .#atlantis
 
 # Build & test without making it the default boot entry
 test:
