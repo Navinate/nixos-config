@@ -5,15 +5,15 @@ default:
 
 # Rebuild & switch the system
 rebuild:
-    sudo nixos-rebuild switch --flake .#nixtest
+    sudo nixos-rebuild switch --flake .#atlantis --extra-experimental-features 'nix-command flakes'
 
 # Build & test without making it the default boot entry
 test:
-    sudo nixos-rebuild test --flake .#nixtest
+    sudo nixos-rebuild test --flake .#atlantis
 
 # Build only, don't activate
 build:
-    nixos-rebuild build --flake .#nixtest
+    nixos-rebuild build --flake .#atlantis
 
 # Update flake inputs
 update:

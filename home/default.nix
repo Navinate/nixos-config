@@ -7,6 +7,7 @@
     ./ghostty.nix
     ./codium.nix
     ./firefox.nix
+    ./zen.nix
     ./mako.nix
     ./claude-code.nix
   ];
