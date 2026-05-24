@@ -55,6 +55,11 @@
 
     # --- AI stuff ---
     claude-code
+
+    # --- General other stuff ---
+    discord
+    spotify
+    obsidian
   ];
 
   programs.home-manager.enable = true;
