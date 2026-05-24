@@ -17,7 +17,7 @@ in
       "$terminal" = "ghostty";
       "$launcher" = "hyprlauncher";
       "$browser"  = "zen";
-      "$files"    = "ghostty -e yazi";
+      "$files"    = "thunar";
 
       # ---- Monitor ----
       # Auto-detect; tweak per real hardware later.
@@ -206,7 +206,8 @@ in
 
       background = [{
         path        = "screenshot";
-        blur_passes = 0;   # blur off — VBox can't render it smoothly
+        blur_passes = 3;
+        blur_size   = 7;   # blur off — VBox can't render it smoothly
         color       = "rgb(${colors.base})";
       }];
 

@@ -38,6 +38,7 @@
 
     # --- File manager + CLI utilities ---
     yazi
+    xfce.thunar
     fastfetch
     htop
     ripgrep
@@ -47,7 +48,6 @@
     fzf
     jq
     unzip
-    gparted
 
     # --- Languages (add as needed) ---
     go
