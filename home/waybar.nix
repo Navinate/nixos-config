@@ -32,12 +32,12 @@ in
       };
 
       cpu = {
-        format = "  {usage}%";
+        format = "CPU  {usage}%";
         interval = 2;
       };
 
       memory = {
-        format = "  {percentage}%";
+        format = "MEM  {percentage}%";
         interval = 5;
       };
 

@@ -10,6 +10,7 @@
     ./zen.nix
     ./mako.nix
     ./claude-code.nix
+    ./zed.nix
   ];
 
   home.username = "kida";
