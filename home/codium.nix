@@ -18,7 +18,9 @@
       ];
 
       userSettings = {
-        "workbench.colorTheme" = "Catppuccin Mocha";
+        "window.autoDetectColorScheme" = true;
+        "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
+        "workbench.preferredLightColorTheme" = "Catppuccin Latte";
         "editor.fontFamily"    = "'FiraCode Nerd Font Retina', monospace";
         "editor.fontSize"      = 14;
         "editor.fontLigatures" = true;
@@ -27,8 +29,6 @@
         "terminal.integrated.fontFamily" = "'FiraCode Nerd Font Retina'";
         "window.titleBarStyle" = "custom";
         "files.trimTrailingWhitespace" = true;
-        # Use Wayland for Codium (smoother on Hyprland)
-        "window.systemColorTheme" = "dark";
 
         "workbench.sideBar.location" = "right";
         "git.autofetch" = true;
