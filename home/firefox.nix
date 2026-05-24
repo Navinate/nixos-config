@@ -7,26 +7,29 @@
       kida = {
         id = 0;
         isDefault = true;
-        bookmarks = [
-          {
-            name = "My Bookmarks Toolbar";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "NixOS";
-                url = "https://nixos.org";
-              }
-              {
-                name = "Home Manager";
-                url = "https://nix-community.github.io/home-manager/";
-              }
-            ];
-          }
-          {
-            name = "GitHub";
-            url = "https://github.com";
-          }
-        ];
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "My Bookmarks Toolbar";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "NixOS";
+                  url = "https://nixos.org";
+                }
+                {
+                  name = "Home Manager";
+                  url = "https://nix-community.github.io/home-manager/";
+                }
+              ];
+            }
+            {
+              name = "GitHub";
+              url = "https://github.com";
+            }
+          ];
+        };
       };
     };
   };
