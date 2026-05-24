@@ -5,5 +5,6 @@
     ./nvidia.nix
     ./steam.nix
     ./zen.nix
+    ./bluetooth.nix
   ];
 }
