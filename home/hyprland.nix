@@ -115,7 +115,7 @@ in
           "$mod, E,             exec, $files"
           "$mod, Space,         exec, $launcher"
           "$mod, L,             exec, hyprlock"
-          "$mod SHIFT, Escape,  exec, mission center"
+          "$mod SHIFT, Escape,  exec, missioncenter"
           # hyprshutdown isn't in nixpkgs 25.11 — quick wofi-based power menu instead
           ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | wofi --dmenu | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac' ''
           "$mod, I,             exec, hyprsysteminfo"
@@ -173,7 +173,7 @@ in
       windowrulev2 = [
         "float,class:(pavucontrol)"
         "float,class:(.blueman-manager-wrapped)"
-        "float,class:(mission-center)"
+        "float,class:(missioncenter)"
         "float,class:(hyprsysteminfo)"
       ];
     };
