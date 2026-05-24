@@ -52,6 +52,7 @@
     # --- Languages (add as needed) ---
     go
     nodejs_22
+    nixd
     # godot_4  # uncomment when you want gdscript work
 
     # --- AI stuff ---

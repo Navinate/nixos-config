@@ -33,6 +33,9 @@
         "workbench.sideBar.location" = "right";
         "git.autofetch" = true;
         "git.confirmSync" = false;
+
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nixd";
       };
     };
   };
