@@ -38,6 +38,9 @@
     wget
     curl
     just
+
+    # lightweight polkit graphical agent
+    lxqt.lxqt-policykit
   ];
 
   # Enable flakes + new nix command
@@ -48,4 +51,6 @@
 
   # Don't change this lightly — see release notes
   system.stateVersion = "25.11";
+
+  security.polkit.enable = true;
 }

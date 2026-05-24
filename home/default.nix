@@ -47,6 +47,7 @@
     fzf
     jq
     unzip
+    gparted
 
     # --- Languages (add as needed) ---
     go

@@ -53,6 +53,7 @@ in
         "waybar"
         "mako"
         "wl-paste --watch cliphist store"
+        "lxqt-policykit-agent"
       ];
 
       # ---- Look & feel ----
@@ -70,9 +71,9 @@ in
       };
 
       general = {
-        gaps_in            = 5;
-        gaps_out           = 5;
-        border_size        = 2;
+        gaps_in            = 4;
+        gaps_out           = 4;
+        border_size        = 0;
         "col.active_border"   = "rgb(${colors.mauve})";
         "col.inactive_border" = "rgb(${colors.surface0})";
         layout             = "dwindle";
