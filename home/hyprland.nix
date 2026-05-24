@@ -207,8 +207,8 @@ in
 
       background = [{
         path        = "screenshot";
-        blur_passes = 3;
-        blur_size   = 7;   # blur off — VBox can't render it smoothly
+        blur_passes = 4;
+        blur_size   = 7;
         color       = "rgb(${colors.base})";
       }];
 
@@ -232,14 +232,6 @@ in
           font_size = 64;
           color     = "rgb(${colors.text})";
           position  = "0, 120";
-          halign    = "center";
-          valign    = "center";
-        }
-        {
-          text      = "Hi, $USER";
-          font_size = 18;
-          color     = "rgb(${colors.subtext0})";
-          position  = "0, 40";
           halign    = "center";
           valign    = "center";
         }

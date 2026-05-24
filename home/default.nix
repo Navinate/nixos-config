@@ -65,6 +65,7 @@
     spotify
     obsidian
     mission-center
+    prismlauncher
   ];
 
   programs.home-manager.enable = true;
