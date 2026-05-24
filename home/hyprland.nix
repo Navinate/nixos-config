@@ -16,19 +16,31 @@ in
       "$mod"      = "SUPER";
       "$terminal" = "ghostty";
       "$launcher" = "hyprlauncher";
-      "$browser"  = "firefox";
+      "$browser"  = "zen";
       "$files"    = "ghostty -e yazi";
 
       # ---- Monitor ----
       # Auto-detect; tweak per real hardware later.
-      monitor = [ ",preferred,auto,1" ];
+      monitor = [
+        "DP-1, preferred, 0x0, 1"
+        "HDMI-A-1, preferred, 2560x0, 1"
+      ];
+
+      # ---- Workspace preferences ----
+      workspace = [
+        "1, monitor:DP-1, default:true, persistent:true"
+        "2, monitor:DP-1, persistent:true"
+        "3, monitor:DP-1, persistent:true"
+        "4, monitor:HDMI-A-1, default:true, persistent:true"
+        "5, monitor:HDMI-A-1, persistent:true"
+      ];
 
       # ---- Env vars inside the Hyprland session ----
       env = [
         # Uncomment these out when on virtual box
-	# "WLR_NO_HARDWARE_CURSORS,1"
+	      # "WLR_NO_HARDWARE_CURSORS,1"
         # "WLR_RENDERER_ALLOW_SOFTWARE,1"
-	# "LIBGL_ALWAYS_SOFTWARE,1"
+	      # "LIBGL_ALWAYS_SOFTWARE,1"
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
         "GDK_BACKEND,wayland,x11"
@@ -46,7 +58,7 @@ in
       # ---- Look & feel ----
       # Animations OFF — VirtualBox software rendering can't keep up.
       # Flip `enabled = true` once on bare metal.
-      animations.enabled = true;
+      animations.enabled = false;
 
       general = {
         gaps_in            = 5;
@@ -103,7 +115,7 @@ in
           "CTRL, Print,     exec, hyprshot -m output"
 
           # Window mgmt
-          "$mod, Q,            killactive,"
+          "$mod, W,            killactive,"
           "$mod, F,            fullscreen,"
           "$mod, V,            togglefloating,"
           "$mod, P,            pseudo,"
