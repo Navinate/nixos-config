@@ -43,13 +43,10 @@
                       "ghostty.nix"
                       "mako.nix"
                       "waybar.nix"
-                      "hyprland.nix"
-                      "hyprlock.nix"
                       "bat.nix"
                       "fzf.nix"
                       "eza.nix"
                       "gtk.nix"
-                      "cursors.nix"
                     ];
                   })
               ];

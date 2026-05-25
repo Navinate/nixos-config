@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
+let
+  palette = builtins.fromJSON (builtins.readFile "${config.catppuccin.sources.palette}/palette.json");
+  colors = lib.mapAttrs (_: v: builtins.substring 1 6 v.hex) palette.${config.catppuccin.flavor}.colors;
+in
 {
   # =========================================================================
   # Hyprland compositor
@@ -72,8 +76,8 @@
         gaps_in            = 4;
         gaps_out           = 4;
         border_size        = 0;
-        "col.active_border"   = "$mauve";
-        "col.inactive_border" = "$surface0";
+        "col.active_border"   = "rgb(${colors.mauve})";
+        "col.inactive_border" = "rgb(${colors.surface0})";
         layout             = "dwindle";
         resize_on_border   = true;
       };
@@ -207,7 +211,7 @@
         path        = "screenshot";
         blur_passes = 4;
         blur_size   = 7;
-        color       = "$base";
+        color       = "rgb(${colors.base})";
       }];
 
       input-field = [{
@@ -215,11 +219,11 @@
         position        = "0, -80";
         halign          = "center";
         valign          = "center";
-        outer_color     = "$mauve";
-        inner_color     = "$surface0";
-        font_color      = "$text";
-        check_color     = "$peach";
-        fail_color      = "$red";
+        outer_color     = "rgb(${colors.mauve})";
+        inner_color     = "rgb(${colors.surface0})";
+        font_color      = "rgb(${colors.text})";
+        check_color     = "rgb(${colors.peach})";
+        fail_color      = "rgb(${colors.red})";
         placeholder_text = "<i>password</i>";
         fade_on_empty   = false;
       }];
@@ -228,7 +232,7 @@
         {
           text      = "$TIME";
           font_size = 64;
-          color     = "$text";
+          color     = "rgb(${colors.text})";
           position  = "0, 120";
           halign    = "center";
           valign    = "center";

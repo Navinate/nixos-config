@@ -24,8 +24,9 @@
     ghostty.enable   = true;
     mako.enable      = true;
     waybar.enable    = true;
-    hyprland.enable  = true;
-    hyprlock = { enable = true; useDefaultConfig = false; };
+    # hyprland/hyprlock disabled — Hyprland in 25.11 doesn't support
+    # the Lua colors._var system that catppuccin/nix uses.
+    # Colors are sourced from the palette JSON directly in hyprland.nix.
     bat.enable       = true;
     fzf.enable       = true;
     eza.enable       = true;
