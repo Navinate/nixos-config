@@ -178,6 +178,14 @@ in
         "float,class:(missioncenter)"
         "float,class:(hyprsysteminfo)"
         "float,class:(hu.irl.cameractrls)"
+
+        # hyprlauncher — Spotlight-style: floating, centered, dimmed backdrop
+        "float,class:(hyprlauncher)"
+        "center,class:(hyprlauncher)"
+        "dimaround,class:(hyprlauncher)"
+        "rounding 16,class:(hyprlauncher)"
+        "noborder,class:(hyprlauncher)"
+        "animation popin,class:(hyprlauncher)"
       ];
     };
   };

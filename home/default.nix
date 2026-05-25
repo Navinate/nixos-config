@@ -15,6 +15,7 @@
     ./zed.nix
     ./spotify.nix
     ./obsidian.nix
+    ./hyprlauncher.nix
   ];
 
   catppuccin = {
