@@ -5,7 +5,6 @@
   ];
   home.file.".claude/settings.json".text = builtins.toJSON {
     model = "opus";
-    effortLevel = "high";
   };
 
   home.file.".claude/CLAUDE.md".text = ''
