@@ -11,6 +11,7 @@
     ./mako.nix
     ./darkman.nix
     ./claude-code.nix
+    ./pi.nix
     ./zed.nix
     ./spotify.nix
   ];
@@ -73,7 +74,6 @@
     nodejs_22
     nixd
     gh
-    claude-code
     pnpm
 
     # --- General other stuff ---
