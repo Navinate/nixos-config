@@ -10,6 +10,11 @@ in {
       adblockify
       hidePodcasts
       shuffle
+      powerBar
+      fullAlbumDate
+      autoVolume
+      coverAmbience
+      aiBandBlocker
     ];
     theme = spicePkgs.themes.catppuccin;
     colorScheme = "mocha";
