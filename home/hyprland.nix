@@ -124,7 +124,7 @@ in
           "$mod, T,             exec, darkman toggle"
 
           # Screenshots
-          "$mod SHIFT, s,   exec, hyprshot -m region"
+          "CTRL SHIFT, s,   exec, hyprshot -m region"
           "SHIFT, Print,    exec, hyprshot -m window"
           "CTRL, Print,     exec, hyprshot -m output"
 

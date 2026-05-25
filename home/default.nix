@@ -14,6 +14,7 @@
     ./pi.nix
     ./zed.nix
     ./spotify.nix
+    ./obsidian.nix
   ];
 
   catppuccin = {
@@ -79,7 +80,6 @@
     # --- General other stuff ---
     cameractrls-gtk4
     discord
-    obsidian
     mission-center
     prismlauncher
   ];
