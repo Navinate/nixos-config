@@ -51,17 +51,13 @@
     jq
     unzip
 
-    # --- Languages (add as needed) ---
+    # --- Development ---
     go
     nodejs_22
     nixd
-    # godot_4  # uncomment when you want gdscript work
-
-    # --- AI stuff ---
-    claude-code
-
-    # --- Git ---
     gh
+    claude-code
+    pnpm
 
     # --- General other stuff ---
     discord
