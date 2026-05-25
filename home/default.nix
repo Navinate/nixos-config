@@ -60,6 +60,9 @@
     # --- AI stuff ---
     claude-code
 
+    # --- Git ---
+    gh
+
     # --- General other stuff ---
     discord
     spotify
