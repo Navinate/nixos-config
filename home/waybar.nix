@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  colors = import ./colors.nix;
-in
+{ ... }:
 {
   programs.waybar = {
     enable = true;
@@ -67,28 +64,28 @@ in
       }
 
       window#waybar {
-        background: #${colors.base};
-        color: #${colors.text};
-        border-bottom: 1px solid #${colors.surface0};
+        background: @base;
+        color: @text;
+        border-bottom: 1px solid @surface0;
       }
 
       #workspaces button {
         padding: 0 8px;
         margin: 2px 2px;
-        color: #${colors.subtext0};
+        color: @subtext0;
         background: transparent;
         border-radius: 4px;
       }
       #workspaces button.active {
-        color: #${colors.base};
-        background: #${colors.mauve};
+        color: @base;
+        background: @mauve;
       }
       #workspaces button:hover {
-        background: #${colors.surface0};
-        color: #${colors.text};
+        background: @surface0;
+        color: @text;
       }
 
-      #window { padding: 0 10px; color: #${colors.subtext1}; }
+      #window { padding: 0 10px; color: @subtext1; }
       #clock,
       #cpu,
       #memory,
@@ -97,14 +94,14 @@ in
       #tray {
         padding: 0 10px;
         margin: 2px 2px;
-        background: #${colors.mantle};
+        background: @mantle;
         border-radius: 4px;
       }
 
-      #cpu        { color: #${colors.peach}; }
-      #memory     { color: #${colors.green}; }
-      #pulseaudio { color: #${colors.blue}; }
-      #network    { color: #${colors.sapphire}; }
+      #cpu        { color: @peach; }
+      #memory     { color: @green; }
+      #pulseaudio { color: @blue; }
+      #network    { color: @sapphire; }
     '';
   };
 }

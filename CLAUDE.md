@@ -30,7 +30,7 @@ This is a flake-based NixOS + Hyprland config targeting a single host (`atlantis
 - `modules/nixos/` — system-level (runs as root). Imported by `hosts/atlantis/configuration.nix`. Contains: `hyprland.nix` (greetd/tuigreet, PAM, portals, fonts), `audio.nix` (pipewire), `vm.nix` (VirtualBox guest additions — delete this on bare metal).
 - `home/` — user-level via home-manager. Imported as `users.trey` in `flake.nix`. Contains per-app config files; `default.nix` is the entry point that imports them all and declares user packages.
 
-**Theming:** `home/colors.nix` is the single source of truth — a Catppuccin Mocha palette (hex values without `#`). All other home modules import it. To retheme everything, replace this one file.
+**Theming:** Uses the [catppuccin/nix](https://github.com/catppuccin/nix) flake. Global flavor/accent are set in `home/default.nix` under `catppuccin = { flavor = "mocha"; accent = "mauve"; }`. Per-app catppuccin modules are enabled individually (not globally, to avoid referencing programs absent in home-manager 25.11). Only the catppuccin sub-modules we use are imported — see `flake.nix` for the filtered list. To add catppuccin theming for a new app, add its module to the list in `flake.nix` and enable it in `home/default.nix`.
 
 **Adding/removing apps:** Drop a file in `home/`, add/remove its import in `home/default.nix`. No other changes needed.
 
@@ -44,4 +44,4 @@ This is a flake-based NixOS + Hyprland config targeting a single host (`atlantis
 
 - `hardware-configuration.nix` is machine-generated and gitignored-in-spirit — replace it after a fresh install with `sudo cp /etc/nixos/hardware-configuration.nix hosts/atlantis/`.
 - `hyprshutdown` is commented out in `home/default.nix` — not yet in nixpkgs 25.11; uncomment after 26.05 or add an overlay.
-- Colors in `.nix` files are used as `"#${colors.base}"` or `"rgb(${colors.mauve})"` — no leading `#` in `colors.nix`.
+- Colors come from the catppuccin/nix module. Waybar CSS uses `@define-color` variables (e.g., `@base`, `@mauve`). Hyprland/hyprlock use `$mauve`, `$base`, etc. from the catppuccin Lua/conf sources. Darkman scripts use the palette JSON via `config.catppuccin.sources.palette`.

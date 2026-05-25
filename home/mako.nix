@@ -1,15 +1,9 @@
-{ pkgs, ... }:
-let
-  colors = import ./colors.nix;
-in
+{ ... }:
 {
   services.mako = {
     enable = true;
     settings = {
       font             = "FiraCode Nerd Font Ret 11";
-      background-color = "#${colors.base}";
-      text-color       = "#${colors.text}";
-      border-color     = "#${colors.mauve}";
       border-size      = 2;
       border-radius    = 6;
       padding          = "10";
@@ -18,7 +12,6 @@ in
       anchor           = "top-right";
 
       "urgency=high" = {
-        border-color    = "#${colors.red}";
         default-timeout = 0;
       };
     };

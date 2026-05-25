@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # Pointer cursor — applied to both Wayland and XWayland apps.
+  # Pointer cursor
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
@@ -8,17 +8,14 @@
     gtk.enable = true;
   };
 
-  # GTK appearance. Adwaita-dark is the safest default; swap for a Catppuccin
-  # GTK theme later if you want (e.g. `magnetic-catppuccin-gtk`).
+  # GTK appearance — the catppuccin GTK theme was archived upstream,
+  # so Adwaita-dark remains the safest default. Icons are themed via
+  # catppuccin.gtk.icon (enabled globally).
   gtk = {
     enable = true;
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
     };
   };
 

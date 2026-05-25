@@ -1,10 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 let
-  dark = import ./colors.nix;
-  light = import ./colors-light.nix;
+  palette = builtins.fromJSON (builtins.readFile "${config.catppuccin.sources.palette}/palette.json");
+  dark  = lib.mapAttrs (_: v: v.hex) palette.mocha.colors;
+  light = lib.mapAttrs (_: v: v.hex) palette.latte.colors;
 
   # Waybar light-mode CSS (mirrors waybar.nix style but with Latte colors)
   waybarLightCss = ''
+    @import "${config.catppuccin.sources.waybar}/latte.css";
+
     * {
       font-family: "FiraCode Nerd Font Ret", monospace;
       font-size: 13px;
@@ -12,28 +15,28 @@ let
     }
 
     window#waybar {
-      background: #${light.base};
-      color: #${light.text};
-      border-bottom: 1px solid #${light.surface0};
+      background: @base;
+      color: @text;
+      border-bottom: 1px solid @surface0;
     }
 
     #workspaces button {
       padding: 0 8px;
       margin: 2px 2px;
-      color: #${light.subtext0};
+      color: @subtext0;
       background: transparent;
       border-radius: 4px;
     }
     #workspaces button.active {
-      color: #${light.base};
-      background: #${light.mauve};
+      color: @base;
+      background: @mauve;
     }
     #workspaces button:hover {
-      background: #${light.surface0};
-      color: #${light.text};
+      background: @surface0;
+      color: @text;
     }
 
-    #window { padding: 0 10px; color: #${light.subtext1}; }
+    #window { padding: 0 10px; color: @subtext1; }
     #clock,
     #cpu,
     #memory,
@@ -42,14 +45,14 @@ let
     #tray {
       padding: 0 10px;
       margin: 2px 2px;
-      background: #${light.mantle};
+      background: @mantle;
       border-radius: 4px;
     }
 
-    #cpu        { color: #${light.peach}; }
-    #memory     { color: #${light.green}; }
-    #pulseaudio { color: #${light.blue}; }
-    #network    { color: #${light.sapphire}; }
+    #cpu        { color: @peach; }
+    #memory     { color: @green; }
+    #pulseaudio { color: @blue; }
+    #network    { color: @sapphire; }
   '';
 
   darkModeScript = pkgs.writeShellScript "dark-mode" ''
@@ -58,8 +61,8 @@ let
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 
     # Hyprland borders
-    hyprctl keyword general:col.active_border "rgb(${dark.mauve})"
-    hyprctl keyword general:col.inactive_border "rgb(${dark.surface0})"
+    hyprctl keyword general:col.active_border "rgb(${builtins.substring 1 6 dark.mauve})"
+    hyprctl keyword general:col.inactive_border "rgb(${builtins.substring 1 6 dark.surface0})"
 
     # Waybar — restart with default (dark) style
     pkill waybar || true
@@ -78,8 +81,8 @@ let
     ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
 
     # Hyprland borders
-    hyprctl keyword general:col.active_border "rgb(${light.mauve})"
-    hyprctl keyword general:col.inactive_border "rgb(${light.surface0})"
+    hyprctl keyword general:col.active_border "rgb(${builtins.substring 1 6 light.mauve})"
+    hyprctl keyword general:col.inactive_border "rgb(${builtins.substring 1 6 light.surface0})"
 
     # Waybar — restart with light style
     pkill waybar || true
@@ -90,9 +93,9 @@ let
     pkill mako || true
     sleep 0.2
     mako \
-      --background-color="#${light.base}" \
-      --text-color="#${light.text}" \
-      --border-color="#${light.mauve}" \
+      --background-color="${light.base}" \
+      --text-color="${light.text}" \
+      --border-color="${light.mauve}" \
       &disown
   '';
 in

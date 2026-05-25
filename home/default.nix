@@ -15,6 +15,23 @@
     ./spotify.nix
   ];
 
+  catppuccin = {
+    flavor = "mocha";
+    accent = "mauve";
+
+    # Per-app enablement (catppuccin.enable = true would break on
+    # editors like "antigravity" that don't exist in home-manager 25.11)
+    ghostty.enable   = true;
+    mako.enable      = true;
+    waybar.enable    = true;
+    hyprland.enable  = true;
+    hyprlock = { enable = true; useDefaultConfig = false; };
+    bat.enable       = true;
+    fzf.enable       = true;
+    eza.enable       = true;
+    gtk.icon.enable  = true;
+  };
+
   home.username = "kida";
   home.homeDirectory = "/home/kida";
   home.stateVersion = "25.11";
@@ -46,9 +63,7 @@
     htop
     ripgrep
     fd
-    bat
-    eza
-    fzf
+    # bat, eza, fzf managed via programs.X below
     jq
     unzip
 
@@ -79,6 +94,10 @@
       rebuild = "cd ~/nixos-config && just rebuild";
     };
   };
+
+  programs.bat.enable = true;
+  programs.eza.enable = true;
+  programs.fzf.enable = true;
 
   programs.git = {
     enable = true;
