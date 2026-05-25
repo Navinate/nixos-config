@@ -12,6 +12,7 @@
     ./darkman.nix
     ./claude-code.nix
     ./zed.nix
+    ./spotify.nix
   ];
 
   home.username = "kida";
@@ -60,8 +61,8 @@
     pnpm
 
     # --- General other stuff ---
+    cameractrls-gtk4
     discord
-    spotify
     obsidian
     mission-center
     prismlauncher

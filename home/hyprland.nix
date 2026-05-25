@@ -176,6 +176,7 @@ in
         "float,class:(.blueman-manager-wrapped)"
         "float,class:(missioncenter)"
         "float,class:(hyprsysteminfo)"
+        "float,class:(hu.irl.cameractrls)"
       ];
     };
   };
