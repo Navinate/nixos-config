@@ -172,7 +172,8 @@ in
 
       # ---- Window rules ----
       windowrulev2 = [
-        "float,class:(pavucontrol)"
+        "float,class:(org.pulseaudio.pavucontrol)"
+        "float,class:(zen),title:(Extension:.*)"
         "float,class:(.blueman-manager-wrapped)"
         "float,class:(missioncenter)"
         "float,class:(hyprsysteminfo)"

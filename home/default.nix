@@ -36,7 +36,7 @@
     grim slurp       # backups in case hyprshot misbehaves
     brightnessctl
     playerctl
-    pavucontrol      # GUI volume mixer for waybar click
+    pavucontrol      # GUI volume mixer
 
     # --- File manager + CLI utilities ---
     yazi
