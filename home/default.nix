@@ -70,6 +70,7 @@
     # bat, eza, fzf managed via programs.X below
     jq
     unzip
+    ouch
 
     # --- Development ---
     go
@@ -83,6 +84,7 @@
     discord
     mission-center
     prismlauncher
+    hey-mail
   ];
 
   programs.home-manager.enable = true;
