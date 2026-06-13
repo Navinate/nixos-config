@@ -6,5 +6,6 @@
     ./steam.nix
     ./zen.nix
     ./bluetooth.nix
+    ./obs.nix
   ];
 }

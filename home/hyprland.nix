@@ -16,7 +16,7 @@ in
       # ---- Vars ----
       "$mod"      = "SUPER";
       "$terminal" = "ghostty";
-      "$launcher" = "hyprlauncher";
+      "$launcher" = "rofi -show drun";
       "$browser"  = "zen";
       "$files"    = "thunar";
 
@@ -117,10 +117,10 @@ in
           "$mod, Space,         exec, $launcher"
           "$mod, L,             exec, hyprlock"
           "$mod SHIFT, Escape,  exec, missioncenter"
-          # hyprshutdown isn't in nixpkgs 25.11 — quick wofi-based power menu instead
-          ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | wofi --dmenu | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac' ''
+          # hyprshutdown isn't in nixpkgs 25.11 — quick rofi-based power menu instead
+          ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | rofi -dmenu -p "Power" | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac' ''
           "$mod, I,             exec, hyprsysteminfo"
-          "$mod SHIFT, V,       exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+          "$mod SHIFT, V,       exec, cliphist list | rofi -dmenu -p \"Clip\" | cliphist decode | wl-copy"
           "$mod, T,             exec, darkman toggle"
 
           # Screenshots
@@ -179,13 +179,13 @@ in
         "float,class:(hyprsysteminfo)"
         "float,class:(hu.irl.cameractrls)"
 
-        # hyprlauncher — Spotlight-style: floating, centered, dimmed backdrop
-        "float,class:(hyprlauncher)"
-        "center,class:(hyprlauncher)"
-        "dimaround,class:(hyprlauncher)"
-        "rounding 16,class:(hyprlauncher)"
-        "noborder,class:(hyprlauncher)"
-        "animation popin,class:(hyprlauncher)"
+        # rofi — Spotlight-style: floating, centered, dimmed backdrop
+        "float,class:(Rofi)"
+        "center,class:(Rofi)"
+        "dimaround,class:(Rofi)"
+        "rounding 16,class:(Rofi)"
+        "noborder,class:(Rofi)"
+        "animation popin,class:(Rofi)"
       ];
     };
   };

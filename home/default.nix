@@ -15,7 +15,7 @@
     ./zed.nix
     ./spotify.nix
     ./obsidian.nix
-    ./hyprlauncher.nix
+    ./rofi.nix
   ];
 
   catppuccin = {
@@ -44,7 +44,6 @@
   # To remove one, just comment its line — no other file change needed.
   home.packages = with pkgs; [
     # --- Hypr ecosystem extras (not in their own home-manager modules) ---
-    hyprlauncher    # app launcher (Super+Space)
     hyprshot        # screenshot (uses hyprshot -m region/window/output)
     # hyprshutdown  # NOT in nixpkgs 25.11 yet — uncomment after 26.05 or pull from unstable
     hyprsysteminfo  # GUI system-info tool
@@ -54,7 +53,6 @@
     # --- Wayland utilities ---
     wl-clipboard
     cliphist
-    wofi             # used as the cliphist picker
     grim slurp       # backups in case hyprshot misbehaves
     brightnessctl
     playerctl
@@ -85,6 +83,7 @@
     mission-center
     prismlauncher
     hey-mail
+    ungoogled-chromium
   ];
 
   programs.home-manager.enable = true;
