@@ -11,6 +11,7 @@
     ./darkman.nix
     ./claude-code.nix
     ./pi.nix
+    ./crush.nix
     ./zed.nix
     ./spotify.nix
     ./obsidian.nix
@@ -64,6 +65,7 @@
     nixd
     gh
     pnpm
+    opencode        # fallback local-first coding harness (primary is crush, see home/crush.nix)
 
     # --- General other stuff ---
     cameractrls-gtk4

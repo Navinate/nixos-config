@@ -12,7 +12,5 @@
 
   hardware.xpadneo.enable = true;
 
-  boot.kernelParams = [ "bluetooth.disable_ertm=1" ];
-
   services.blueman.enable = true;
 }

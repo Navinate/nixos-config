@@ -7,5 +7,6 @@
     ./zen.nix
     ./bluetooth.nix
     ./obs.nix
+    ./ollama.nix
   ];
 }

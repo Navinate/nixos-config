@@ -24,10 +24,16 @@
 
       bar.layout = [
         {
+          monitor = "DP-1";
+          left    = [ "hyprland-workspaces" ];
+          center  = [ "clock" "notifications" ];
+          right   = [ "volume" "bluetooth" "network" "systray" ];
+        }
+        {
           monitor = "*";
           left    = [ "hyprland-workspaces" ];
           center  = [ "clock" "notifications" ];
-          right   = [ "cpu" "ram" "volume" "bluetooth" "network" "systray" ];
+          right   = [ "media" ];
         }
       ];
 

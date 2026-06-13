@@ -94,7 +94,6 @@ in
 
       dwindle = {
         preserve_split   = true;
-        pseudotile       = true;
       };
 
       misc = {
@@ -129,7 +128,7 @@ in
           "$mod, F,            fullscreen,"
           "$mod, V,            togglefloating,"
           "$mod, P,            pseudo,"
-          "$mod, J,            togglesplit,"
+          "$mod, J,            layoutmsg, togglesplit"
 
           # Focus
           "$mod, left,  movefocus, l"
@@ -168,20 +167,21 @@ in
       ];
 
       # ---- Window rules ----
+      # 0.55 window-rule grammar: "effect value, match:prop value" (comma-separated).
       windowrule = [
-        "float,class:(org.pulseaudio.pavucontrol)"
-        "float,class:(.blueman-manager-wrapped)"
-        "float,class:(missioncenter)"
-        "float,class:(hyprsysteminfo)"
-        "float,class:(hu.irl.cameractrls)"
+        "float true, match:class (org.pulseaudio.pavucontrol)"
+        "float true, match:class (.blueman-manager-wrapped)"
+        "float true, match:class (missioncenter)"
+        "float true, match:class (hyprsysteminfo)"
+        "float true, match:class (hu.irl.cameractrls)"
 
         # rofi — Spotlight-style: floating, centered, dimmed backdrop
-        "float,class:(Rofi)"
-        "center,class:(Rofi)"
-        "dimaround,class:(Rofi)"
-        "rounding 16,class:(Rofi)"
-        "noborder,class:(Rofi)"
-        "animation popin,class:(Rofi)"
+        "float true, match:class (Rofi)"
+        "center true, match:class (Rofi)"
+        "dim_around true, match:class (Rofi)"
+        "rounding 16, match:class (Rofi)"
+        "border_size 0, match:class (Rofi)"
+        "animation popin, match:class (Rofi)"
       ];
     };
   };

@@ -35,3 +35,9 @@ repl:
 # List system generations
 generations:
     sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+
+# Reconnect the Bose 700 to renegotiate A2DP (run if audio is stuck after a rebuild)
+bt:
+    bluetoothctl disconnect C8:7B:23:5C:F5:62
+    sleep 3
+    bluetoothctl connect C8:7B:23:5C:F5:62

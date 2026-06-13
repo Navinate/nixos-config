@@ -35,8 +35,13 @@ This also requires adding the input to `flake.nix` and works because `extraSpeci
 ## Step 2: Create `home/<name>.nix`
 
 - Match the style of existing files (see `ghostty.nix`, `codium.nix`, `firefox.nix`, `zen.nix`).
-- If the program needs theming, import colors: `let colors = import ./colors.nix; in` and use values as `"#${colors.base}"` or `"rgb(${colors.mauve})"`. Colors are hex without `#` — see `home/colors.nix`.
 - Keep it minimal. Don't add config the user didn't ask for.
+
+**Theming.** This repo themes with the [catppuccin/nix](https://github.com/catppuccin/nix) flake (mocha / mauve, set in `home/default.nix`). There is no `colors.nix`. Pick the approach that fits, in order of preference:
+
+1. **catppuccin home-manager module** — if catppuccin ships a module for this app, add its module name to the filter list in `flake.nix` (the `importApply` `map (m: ...)` list). With `autoEnable = true` it themes automatically; no per-app `.enable` needed.
+2. **The app's own built-in catppuccin preset** — e.g. `spotify.nix` uses spicetify's catppuccin theme, `wayle.nix` uses wayle's built-in catppuccin-mocha palette. Prefer this over hand-mapping colors.
+3. **Manual palette colors** — only when neither above works. Read the palette JSON via `config.catppuccin.sources.palette` (the module takes `{ config, lib, ... }`). See `home/darkman.nix` for the pattern (`builtins.fromJSON (builtins.readFile "${config.catppuccin.sources.palette}/palette.json")`, then map `.hex`).
 
 ## Step 3: Wire it up
 
