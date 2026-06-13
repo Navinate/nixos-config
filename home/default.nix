@@ -19,21 +19,10 @@
   ];
 
   catppuccin = {
-    flavor = "mocha";
-    accent = "mauve";
-
-    # Per-app enablement (catppuccin.enable = true would break on
-    # editors like "antigravity" that don't exist in home-manager 25.11)
-    ghostty.enable   = true;
-    mako.enable      = true;
-    waybar.enable    = true;
-    # hyprland/hyprlock disabled — Hyprland in 25.11 doesn't support
-    # the Lua colors._var system that catppuccin/nix uses.
-    # Colors are sourced from the palette JSON directly in hyprland.nix.
-    bat.enable       = true;
-    fzf.enable       = true;
-    eza.enable       = true;
-    gtk.icon.enable  = true;
+    enable     = true;
+    autoEnable = true;
+    flavor     = "mocha";
+    accent     = "mauve";
   };
 
   home.username = "kida";
@@ -45,7 +34,7 @@
   home.packages = with pkgs; [
     # --- Hypr ecosystem extras (not in their own home-manager modules) ---
     hyprshot        # screenshot (uses hyprshot -m region/window/output)
-    # hyprshutdown  # NOT in nixpkgs 25.11 yet — uncomment after 26.05 or pull from unstable
+    hyprshutdown    # power menu (lock/logout/reboot/shutdown)
     hyprsysteminfo  # GUI system-info tool
     hyprcursor      # cursor theme runtime (needs a hyprcursor theme to do anything visible)
     hyprpicker      # color picker — useful when theming
@@ -60,7 +49,7 @@
 
     # --- File manager + CLI utilities ---
     yazi
-    xfce.thunar
+    thunar
     fastfetch
     htop
     ripgrep
@@ -109,4 +98,5 @@
       user.email = "treycluff@gmail.com";
     };
   };
+
 }

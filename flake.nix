@@ -7,9 +7,9 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
@@ -41,8 +41,9 @@
             users.kida = {
               imports = [
                 ./home
-                # Import catppuccin with only the modules we use, avoiding
-                # references to programs that don't exist in home-manager 25.11.
+                # Filter catppuccin modules to only the apps we want themed.
+                # Importing all of them would auto-enable theming for rofi,
+                # firefox, obsidian, etc., which clashes with our own configs.
                 (nixpkgs.lib.modules.importApply
                   "${catppuccin}/modules/global.nix"
                   { catppuccinModules = map (m: "${catppuccin}/modules/home-manager/${m}") [

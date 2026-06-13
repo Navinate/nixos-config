@@ -23,22 +23,16 @@ sudo nixos-rebuild switch --flake .#atlantis --rollback
 
 ## Architecture
 
-This is a flake-based NixOS + Hyprland config targeting a single host (`atlantis`), currently running inside VirtualBox for testing before bare-metal deployment. Inputs are pinned to `nixpkgs 25.11` and `home-manager release-25.11`.
+This is a flake-based NixOS + Hyprland config targeting a single host (`atlantis`). Inputs are pinned to `nixpkgs 25.11` and `home-manager release-25.11`.
 
 **Two configuration layers:**
 
-- `modules/nixos/` — system-level (runs as root). Imported by `hosts/atlantis/configuration.nix`. Contains: `hyprland.nix` (greetd/tuigreet, PAM, portals, fonts), `audio.nix` (pipewire), `vm.nix` (VirtualBox guest additions — delete this on bare metal).
+- `modules/nixos/` — system-level (runs as root). Imported by `hosts/atlantis/configuration.nix`. Contains: `hyprland.nix` (greetd/tuigreet, PAM, portals, fonts), `audio.nix` (pipewire), and other system-level modules.
 - `home/` — user-level via home-manager. Imported as `users.trey` in `flake.nix`. Contains per-app config files; `default.nix` is the entry point that imports them all and declares user packages.
 
 **Theming:** Uses the [catppuccin/nix](https://github.com/catppuccin/nix) flake. Global flavor/accent are set in `home/default.nix` under `catppuccin = { flavor = "mocha"; accent = "mauve"; }`. Per-app catppuccin modules are enabled individually (not globally, to avoid referencing programs absent in home-manager 25.11). Only the catppuccin sub-modules we use are imported — see `flake.nix` for the filtered list. To add catppuccin theming for a new app, add its module to the list in `flake.nix` and enable it in `home/default.nix`.
 
 **Adding/removing apps:** Drop a file in `home/`, add/remove its import in `home/default.nix`. No other changes needed.
-
-**Bare-metal migration checklist:**
-
-- Remove `./vm.nix` from `modules/nixos/default.nix`
-- Remove `WLR_*` env vars from `modules/nixos/hyprland.nix` and `home/hyprland.nix`
-- Enable animations and blur in `home/hyprland.nix`
 
 ## Notes
 

@@ -11,6 +11,9 @@ in
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
+    # 26.05 default changed to "lua"; pin to hyprlang to keep using
+    # the settings = { ... } attrset form below.
+    configType = "hyprlang";
 
     settings = {
       # ---- Vars ----
@@ -38,10 +41,6 @@ in
 
       # ---- Env vars inside the Hyprland session ----
       env = [
-        # Uncomment these out when on virtual box
-	      # "WLR_NO_HARDWARE_CURSORS,1"
-        # "WLR_RENDERER_ALLOW_SOFTWARE,1"
-	      # "LIBGL_ALWAYS_SOFTWARE,1"
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
         "GDK_BACKEND,wayland,x11"
@@ -84,7 +83,6 @@ in
 
       decoration = {
         rounding = 6;
-        # Turn off when on VM
         blur.enabled   = true;
         shadow.enabled = true;
       };
@@ -117,8 +115,8 @@ in
           "$mod, Space,         exec, $launcher"
           "$mod, L,             exec, hyprlock"
           "$mod SHIFT, Escape,  exec, missioncenter"
-          # hyprshutdown isn't in nixpkgs 25.11 — quick rofi-based power menu instead
-          ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | rofi -dmenu -p "Power" | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) systemctl poweroff;; esac' ''
+          # Power menu via rofi; hyprshutdown gracefully closes apps before poweroff
+          ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | rofi -dmenu -p "Power" | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) hyprshutdown --post-cmd "systemctl poweroff";; esac' ''
           "$mod, I,             exec, hyprsysteminfo"
           "$mod SHIFT, V,       exec, cliphist list | rofi -dmenu -p \"Clip\" | cliphist decode | wl-copy"
           "$mod, T,             exec, darkman toggle"
@@ -151,7 +149,7 @@ in
           "$mod, S,       togglespecialworkspace, magic"
           "$mod SHIFT, S, movetoworkspace, special:magic"
 
-          # Volume & brightness (no-ops in VBox, work on bare metal)
+          # Volume & brightness
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

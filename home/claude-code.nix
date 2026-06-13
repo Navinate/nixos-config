@@ -4,7 +4,8 @@
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
   ];
   home.file.".claude/settings.json".text = builtins.toJSON {
-    model = "opus";
+    model = "opus-4.8";
+    effort = "high";
   };
 
   home.file.".claude/CLAUDE.md".text = ''

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   # Pointer cursor
   home.pointerCursor = {
@@ -17,6 +17,9 @@
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
+    # 26.05 changed gtk4.theme default to null; pin to gtk.theme to keep
+    # current behavior (Adwaita-dark applied to GTK4 apps too).
+    gtk4.theme = config.gtk.theme;
   };
 
   # Prefer dark mode in GNOME-style settings
