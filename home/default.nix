@@ -3,12 +3,11 @@
   imports = [
     ./theme.nix
     ./hyprland.nix
-    ./waybar.nix
+    ./wayle.nix
     ./ghostty.nix
     ./codium.nix
     ./firefox.nix
     ./zen.nix
-    ./mako.nix
     ./darkman.nix
     ./claude-code.nix
     ./pi.nix

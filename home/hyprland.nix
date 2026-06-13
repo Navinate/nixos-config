@@ -50,8 +50,6 @@ in
       # ---- Autostart ----
       exec-once = [
         "hypridle"
-        "waybar"
-        "mako"
         "wl-paste --watch cliphist store"
         "lxqt-policykit-agent"
         "blueman-applet"
