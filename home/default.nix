@@ -48,7 +48,6 @@
     pavucontrol      # GUI volume mixer
 
     # --- File manager + CLI utilities ---
-    yazi
     thunar
     fastfetch
     htop

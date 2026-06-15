@@ -32,10 +32,12 @@
         {
           monitor = "*";
           left    = [ "hyprland-workspaces" ];
-          center  = [ "clock" "notifications" ];
-          right   = [ "media" ];
+          center  = [ "clock" ];
+          right   = [ "cava media" ];
         }
       ];
+
+      bar.scale = "0.5";
 
       modules.clock.format = "%a %b %d  %H:%M";
     };

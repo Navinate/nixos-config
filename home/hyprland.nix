@@ -2,6 +2,7 @@
 let
   palette = builtins.fromJSON (builtins.readFile "${config.catppuccin.sources.palette}/palette.json");
   colors = lib.mapAttrs (_: v: builtins.substring 1 6 v.hex) palette.${config.catppuccin.flavor}.colors;
+  wallpaper = ../assets/totoro.jpg;
 in
 {
   # =========================================================================
@@ -53,6 +54,9 @@ in
         "wl-paste --watch cliphist store"
         "lxqt-policykit-agent"
         "blueman-applet"
+        # hyprpaper 0.8.x drops the wallpaper on its first monitor enumeration
+        # ("no target") — re-apply once it's up so the wallpaper actually shows.
+        ''bash -c 'until hyprctl hyprpaper wallpaper ",${wallpaper}"; do sleep 1; done' ''
       ];
 
       # ---- Look & feel ----
@@ -171,7 +175,7 @@ in
       windowrule = [
         "float true, match:class (org.pulseaudio.pavucontrol)"
         "float true, match:class (.blueman-manager-wrapped)"
-        "float true, match:class (missioncenter)"
+        "float true, match:class (.missioncenter-wrapped)"
         "float true, match:class (hyprsysteminfo)"
         "float true, match:class (hu.irl.cameractrls)"
 
@@ -189,12 +193,13 @@ in
   # =========================================================================
   # hyprpaper — wallpaper daemon
   # =========================================================================
-  # Drop a wallpaper file at ~/.config/hypr/wallpaper.jpg (or change the path).
+  # Wallpaper comes from assets/totoro.jpg in this repo — swap that file to
+  # change it. Uses an absolute store path; hyprpaper 0.8.x no longer expands ~.
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload   = [ "~/.config/hypr/wallpaper.jpg" ];
-      wallpaper = [ ",~/.config/hypr/wallpaper.jpg" ];
+      preload   = [ "${wallpaper}" ];
+      wallpaper = [ ",${wallpaper}" ];
       ipc       = "on";
     };
   };
