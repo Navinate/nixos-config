@@ -70,5 +70,16 @@
     3. [Step] -> verify: [check]
 
     Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+
+
+    ## 5. Godot guidelines
+
+    - don't guess about godot features, functions, or interfaces.  always ground yourself in the truth via the documentation.  The documentation's git repo is ~/games/godot-docs/.
+    - write extremely minimal comments in gdscript files,  do not write any comments anywhere else.
+    - prefer gdscript over other languages, always statically typed.
+    - do not over complicate things, keep features simple and easy to modify.
+    - DO NOT CREATE ASSETS (models, images, sounds, etc) without EXPLICIT instructions to do so
+        * even then, make intenionally placeholder assets with not artistic goal, pure programmer art
   '';
 }

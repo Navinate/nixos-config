@@ -16,6 +16,7 @@
     ./spotify.nix
     ./obsidian.nix
     ./rofi.nix
+    ./godot.nix
   ];
 
   catppuccin = {
@@ -65,6 +66,7 @@
     gh
     pnpm
     opencode        # fallback local-first coding harness (primary is crush, see home/crush.nix)
+    bun
 
     # --- General other stuff ---
     cameractrls-gtk4
