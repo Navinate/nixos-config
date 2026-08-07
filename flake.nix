@@ -22,6 +22,8 @@
     };
     catppuccin.url = "github:catppuccin/nix";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    helium.url = "github:FKouhai/helium2nix/main";
+    herdr.url = "github:herdrdev/herdr/v0.8.0";
   };
 
   outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs: {

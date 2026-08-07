@@ -21,7 +21,7 @@ in
       "$mod"      = "SUPER";
       "$terminal" = "ghostty";
       "$launcher" = "rofi -show drun";
-      "$browser"  = "zen";
+      "$browser"  = "helium";
       "$files"    = "thunar";
 
       # ---- Monitor ----
@@ -117,7 +117,7 @@ in
           "$mod, L,             exec, hyprlock"
           "$mod SHIFT, Escape,  exec, missioncenter"
           # Power menu via rofi; hyprshutdown gracefully closes apps before poweroff
-          ''$mod CTRL, L, exec, echo -e "lock\nlogout\nreboot\nshutdown" | rofi -dmenu -p "Power" | xargs -I {} sh -c 'case {} in lock) hyprlock;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) hyprshutdown --post-cmd "systemctl poweroff";; esac' ''
+          ''$mod CTRL, L, exec, echo -e "lock\nsuspend\nlogout\nreboot\nshutdown" | rofi -dmenu -p "Power" | xargs -I {} sh -c 'case {} in lock) hyprlock;; suspend) systemctl suspend;; logout) hyprctl dispatch exit;; reboot) systemctl reboot;; shutdown) hyprshutdown --post-cmd "systemctl poweroff";; esac' ''
           "$mod, I,             exec, hyprsysteminfo"
           "$mod SHIFT, V,       exec, cliphist list | rofi -dmenu -p \"Clip\" | cliphist decode | wl-copy"
           "$mod, T,             exec, darkman toggle"

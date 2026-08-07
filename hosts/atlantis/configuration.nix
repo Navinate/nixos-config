@@ -41,6 +41,9 @@
 
     # lightweight polkit graphical agent
     lxqt.lxqt-policykit
+
+    ffmpeg
+    darktable
   ];
 
   # Enable flakes + new nix command

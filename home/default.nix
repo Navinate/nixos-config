@@ -9,14 +9,12 @@
     ./firefox.nix
     ./zen.nix
     ./darkman.nix
-    ./claude-code.nix
-    ./pi.nix
-    ./crush.nix
     ./zed.nix
     ./spotify.nix
     ./obsidian.nix
     ./rofi.nix
     ./godot.nix
+    ./ai/default.nix
   ];
 
   catppuccin = {
@@ -49,7 +47,6 @@
     pavucontrol      # GUI volume mixer
 
     # --- File manager + CLI utilities ---
-    thunar
     fastfetch
     htop
     ripgrep
@@ -65,7 +62,6 @@
     nixd
     gh
     pnpm
-    opencode        # fallback local-first coding harness (primary is crush, see home/crush.nix)
     bun
 
     # --- General other stuff ---

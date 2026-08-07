@@ -8,5 +8,6 @@
     ./bluetooth.nix
     ./obs.nix
     ./ollama.nix
+    ./thunar.nix
   ];
 }

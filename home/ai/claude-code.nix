@@ -6,6 +6,7 @@
   home.file.".claude/settings.json".text = builtins.toJSON {
     model = "opus";
     effort = "high";
+    tui = "fullscreen";
   };
 
   home.file.".claude/CLAUDE.md".text = ''

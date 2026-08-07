@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+harness
 
 ## What this repo is
 
@@ -10,7 +10,7 @@ Wayland. Design goals, in priority order:
 
 1. **Modular.** Every program the user touches often, or that carries non-trivial
    config, gets its own file. Anything tied to specific hardware also gets its own
-   file (e.g. `modules/nixos/nvidia.nix`). The file *is* the module boundary.
+   file (e.g. `modules/nixos/nvidia.nix`). The file _is_ the module boundary.
 2. **Multi-host.** One repo should configure several machines, selected by which
    host you build. Two host directories exist today: `atlantis` (the personal
    desktop, bare metal) and `nixtest` (originally a VirtualBox VM used to bootstrap
@@ -114,6 +114,7 @@ themselves; per-app `.enable` is not needed. To add catppuccin theming for a new
 app, add its module name to that filter list in `flake.nix`.
 
 Some apps are themed outside that mechanism on purpose:
+
 - `home/theme.nix` — GTK uses `Adwaita-dark` (catppuccin's GTK theme was archived
   upstream); icons still come from catppuccin.
 - `home/wayle.nix` — uses wayle's own built-in catppuccin-mocha palette verbatim.
