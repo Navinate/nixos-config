@@ -15,6 +15,7 @@
         esbenp.prettier-vscode
         jnoortheen.nix-ide
         astro-build.astro-vscode
+        svelte.svelte-vscode
       ];
 
       userSettings = {
