@@ -71,6 +71,7 @@
     prismlauncher
     hey-mail
     ungoogled-chromium
+    mixxx
   ];
 
   programs.home-manager.enable = true;
