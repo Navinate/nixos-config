@@ -17,11 +17,14 @@ let
     };
 
     dontUnpack = true;
+    dontStrip = true;
+    dontPatchELF = true;
 
-    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+    nativeBuildInputs = [ pkgs.patchelf ];
 
     installPhase = ''
       install -Dm755 $src $out/bin/ori
+      patchelf --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} $out/bin/ori
     '';
   };
 in
