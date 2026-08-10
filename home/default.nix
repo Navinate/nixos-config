@@ -72,6 +72,7 @@
     hey-mail
     ungoogled-chromium
     mixxx
+    modrinth-app
   ];
 
   programs.home-manager.enable = true;
