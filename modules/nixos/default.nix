@@ -9,5 +9,6 @@
     ./obs.nix
     ./ollama.nix
     ./thunar.nix
+    ./nix-ld.nix
   ];
 }

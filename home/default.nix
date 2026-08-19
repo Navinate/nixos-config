@@ -72,7 +72,19 @@
     hey-mail
     ungoogled-chromium
     mixxx
-    modrinth-app
+    # Workaround: Modrinth (WebKitGTK) crashes under Wayland on Hyprland via the
+    # wp_linux_drm_syncobj protocol ("Missing acquire timeline"), showing a grey
+    # window then closing. Disable WebKit's DMA-BUF renderer so it runs natively.
+    (pkgs.symlinkJoin {
+      name = "modrinth-app";
+      paths = [ pkgs.modrinth-app ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        rm -f $out/bin/ModrinthApp
+        makeWrapper ${pkgs.modrinth-app}/bin/ModrinthApp $out/bin/ModrinthApp \
+          --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+      '';
+    })
   ];
 
   programs.home-manager.enable = true;
