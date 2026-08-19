@@ -44,6 +44,7 @@
 
     ffmpeg
     darktable
+
   ];
 
   # Enable flakes + new nix command
