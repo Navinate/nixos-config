@@ -1,5 +1,5 @@
 {
-  description = "Trey's NixOS + Hyprland test config";
+  description = "NixOS Wayland compositor configuration";
 
   nixConfig = {
     extra-substituters = [ "https://cache.numtide.com" ];

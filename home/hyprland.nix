@@ -25,11 +25,22 @@ in
       "$files"    = "thunar";
 
       # ---- Monitor ----
-      # Auto-detect; tweak per real hardware later.
       monitor = [
-        "DP-1, preferred, 0x0, 1"
-        "HDMI-A-1, preferred, 2560x0, 1"
+        "DP-1, 2560x1440@164.983, 0x0, 1, bitdepth, 10"
+        "HDMI-A-1, 2560x1440@143.933, 2560x0, 1, bitdepth, 10"
       ];
+
+      # ---- Render / HDR / Color Management ----
+      render = {
+        cm_enabled = true;
+        cm_auto_hdr = 1;
+        send_content_type = true;
+        use_fp16 = 2; # auto
+      };
+
+      quirks = {
+        prefer_hdr = 1; # Enable HDR preference for applications
+      };
 
       # ---- Workspace preferences ----
       workspace = [

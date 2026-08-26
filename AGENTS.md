@@ -1,12 +1,11 @@
 # AGENTS.md
 
-harness
-
 ## What this repo is
 
 A flake-based, declarative configuration for the whole machine — both the OS
-(NixOS) and the user's applications (home-manager) — targeting Hyprland on
-Wayland. Design goals, in priority order:
+(NixOS) and the user's applications (home-manager) — targeting selectable
+Hyprland (dwindle layout) and Niri profiles on Wayland. Design goals, in
+priority order:
 
 1. **Modular.** Every program the user touches often, or that carries non-trivial
    config, gets its own file. Anything tied to specific hardware also gets its own
@@ -56,7 +55,8 @@ hosts/<host>/
 
 modules/nixos/            # system-level (root). Aggregated by modules/nixos/default.nix
   default.nix             # imports every system module below
-  hyprland.nix            # Hyprland session, greetd/tuigreet, PAM for hyprlock, xdg portals, fonts, dconf
+  compositor.nix          # my.desktop.compositor enum: hyprland or niri
+  desktop.nix             # selected compositor, greetd/tuigreet, portals, PAM, fonts, dconf
   audio.nix               # pipewire (alsa/pulse) + wireplumber bluetooth policy
   bluetooth.nix           # bluez + blueman + xpadneo (Xbox controller)
   nvidia.nix              # NVIDIA proprietary/open driver (hardware-specific)
@@ -65,10 +65,11 @@ modules/nixos/            # system-level (root). Aggregated by modules/nixos/def
   zen.nix                 # system-wide Zen browser extension policies (/etc/zen/policies)
 
 home/                     # user-level via home-manager. Aggregated by home/default.nix
-  default.nix             # entry point: imports all home modules, catppuccin globals, shared home.packages, bash/git
+  default.nix             # entry point: selects a compositor profile, shared config/packages, bash/git
   theme.nix               # cursor + GTK theme (Adwaita-dark) + prefer-dark
-  darkman.nix             # darkman service + light/dark transition scripts (waybar/mako/hyprland/gtk)
+  darkman.nix             # darkman service + light/dark transition scripts (wayle/mako/hyprland/gtk)
   hyprland.nix            # Hyprland user config (keybinds, rules, colors from catppuccin palette)
+  niri.nix                # Niri KDL profile, Swaylock/Swayidle, wallpaper, XWayland Satellite
   wayle.nix               # wayle status bar (built-in catppuccin-mocha palette)
   rofi.nix                # rofi launcher
   ghostty.nix             # ghostty terminal
@@ -96,9 +97,9 @@ casually.
   `imports = [ ../../modules/nixos ]`. To add/remove a system module, edit
   `default.nix`.
 - `home/` — user-level via home-manager. `home/default.nix` is the entry point:
-  it imports each per-app module, sets the catppuccin globals, declares shared
-  `home.packages`, and configures bash/git. To add/remove a user app, edit its
-  import in `home/default.nix`.
+  it imports each per-app module, selects one compositor profile, sets the
+  catppuccin globals, declares shared `home.packages`, and configures bash/git.
+  To add/remove a user app, edit its import in `home/default.nix`.
 
 `inputs` is threaded into both layers (`specialArgs` / `extraSpecialArgs`), so any
 module can take `{ inputs, ... }` and reference a flake input directly (see
@@ -120,8 +121,39 @@ Some apps are themed outside that mechanism on purpose:
 - `home/wayle.nix` — uses wayle's own built-in catppuccin-mocha palette verbatim.
 - `home/spotify.nix` — uses spicetify's catppuccin theme.
 - `home/darkman.nix` — light/dark switching reads the palette JSON via
-  `config.catppuccin.sources.palette` and restarts waybar/mako and re-colors
-  Hyprland borders.
+  `config.catppuccin.sources.palette`, restarts Wayle/Mako, and re-colors
+  Hyprland borders only when Hyprland is selected. Niri focus colors remain
+  fixed to the Catppuccin Mocha palette.
+
+## Compositor selection
+
+`modules/nixos/compositor.nix` defines the single selector
+`my.desktop.compositor`, with `"hyprland"` and `"niri"` as its only values.
+The shared default is `"hyprland"`; Atlantis explicitly selects `"niri"` in
+`hosts/atlantis/configuration.nix`. The selector controls the system compositor,
+greetd session command, compositor-specific PAM and portal settings, and the
+Home Manager profile through `osConfig`.
+
+- `modules/nixos/desktop.nix` owns shared Wayland system settings and enables
+  either `programs.hyprland` or `programs.niri`. Niri always starts with
+  `niri-session`; it needs that startup path to initialize its systemd user
+  environment and portals.
+- `home/hyprland.nix` remains the complete Hyprland profile, including dwindle,
+  Hyprland services, and Hypr-specific packages.
+- `home/niri.nix` generates `~/.config/niri/config.kdl`, starts session helpers
+  and XWayland Satellite, and owns Swaylock/Swayidle/Swaybg. Its output names
+  and modes should be verified after login with `niri msg outputs`.
+
+Both compositors are not exposed simultaneously at greetd. Switching means
+changing the host selector and rebuilding.
+
+### Switching compositors
+
+1. Edit `my.desktop.compositor` in `hosts/atlantis/configuration.nix`.
+2. Run `just build` first to evaluate and build without activation.
+3. Run `just test` to activate the candidate configuration without changing the
+   boot default, then log in and test the selected session.
+4. Run `just rebuild` only after the session works as expected.
 
 ## Multi-host
 

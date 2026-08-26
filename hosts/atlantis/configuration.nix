@@ -13,6 +13,9 @@
   networking.hostName = "atlantis";
   networking.networkmanager.enable = true;
 
+  # Change to "hyprland" to restore the existing dwindle session.
+  my.desktop.compositor = "hyprland";
+
   # Locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -56,5 +59,4 @@
   # Don't change this lightly — see release notes
   system.stateVersion = "25.11";
 
-  security.polkit.enable = true;
 }

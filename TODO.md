@@ -32,10 +32,10 @@ bottom of each section.
 - [ ] **Pluggable coding agents.** Set up `coding-agents.nix` (or similar) to allow
   harnesses and LLM models beyond claude-code / Anthropic. (We already pull `pi`
   from the `llm-agents.nix` input — build on that.)
-- [x] **Local LLM provider.** Ollama (`modules/nixos/ollama.nix`, `ollama-cuda`)
-  serving `qwen2.5-coder:7b`, driven by the Crush harness (`home/crush.nix`) with
-  OpenCode as fallback. Research and options in
-  [`docs/local-llm-hosting.md`](docs/local-llm-hosting.md).
+- [x] **Local LLM provider.** Removed: Ollama (`modules/nixos/ollama.nix`,
+  `ollama-cuda`) and the `qwen2.5-coder:7b` model are gone; Crush
+  (`home/crush.nix`) is kept for use with external inference providers.
+  (Former research doc `docs/local-llm-hosting.md` was deleted.)
 - [ ] **Migrate Hyprland to Lua config (`configType = "lua"`).** We pin
   `configType = "hyprlang"` in `home/hyprland.nix` to keep the home-manager
   `settings = { ... }` attrset form, but Hyprland is winding down hyprlang: as of

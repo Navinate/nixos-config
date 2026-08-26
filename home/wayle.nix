@@ -1,4 +1,11 @@
-{ ... }:
+{ osConfig, ... }:
+let
+  workspaceModule =
+    if osConfig.my.desktop.compositor == "hyprland" then
+      "hyprland-workspaces"
+    else
+      "niri-workspaces";
+in
 {
   services.wayle = {
     enable = true;
@@ -25,13 +32,13 @@
       bar.layout = [
         {
           monitor = "DP-1";
-          left    = [ "hyprland-workspaces" ];
+          left    = [ workspaceModule ];
           center  = [ "clock" "notifications" ];
           right   = [ "volume" "bluetooth" "network" "systray" ];
         }
         {
           monitor = "*";
-          left    = [ "hyprland-workspaces" ];
+          left    = [ workspaceModule ];
           center  = [ "clock" ];
           right   = [ "cava media" ];
         }

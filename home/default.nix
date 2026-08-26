@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, osConfig, ... }:
+let
+  isHyprland = osConfig.my.desktop.compositor == "hyprland";
+  isNiri = osConfig.my.desktop.compositor == "niri";
+in
 {
   imports = [
     ./theme.nix
-    ./hyprland.nix
     ./wayle.nix
     ./ghostty.nix
     ./codium.nix
@@ -15,7 +18,9 @@
     ./rofi.nix
     ./godot.nix
     ./ai/default.nix
-  ];
+  ]
+  ++ lib.optionals isHyprland [ ./hyprland.nix ]
+  ++ lib.optionals isNiri [ ./niri.nix ];
 
   catppuccin = {
     enable     = true;
@@ -28,64 +33,68 @@
   home.homeDirectory = "/home/kida";
   home.stateVersion = "25.11";
 
-  # User-scope packages.
-  # To remove one, just comment its line — no other file change needed.
-  home.packages = with pkgs; [
-    # --- Hypr ecosystem extras (not in their own home-manager modules) ---
-    hyprshot        # screenshot (uses hyprshot -m region/window/output)
-    hyprshutdown    # power menu (lock/logout/reboot/shutdown)
-    hyprsysteminfo  # GUI system-info tool
-    hyprcursor      # cursor theme runtime (needs a hyprcursor theme to do anything visible)
-    hyprpicker      # color picker — useful when theming
+  home.packages = with pkgs;
+    [
+      # --- Wayland utilities ---
+      wl-clipboard
+      cliphist
+      grim slurp
+      brightnessctl
+      playerctl
+      pavucontrol      # GUI volume mixer
 
-    # --- Wayland utilities ---
-    wl-clipboard
-    cliphist
-    grim slurp       # backups in case hyprshot misbehaves
-    brightnessctl
-    playerctl
-    pavucontrol      # GUI volume mixer
+      # --- File manager + CLI utilities ---
+      fastfetch
+      htop
+      ripgrep
+      fd
+      # bat, eza, fzf managed via programs.X below
+      jq
+      unzip
+      ouch
 
-    # --- File manager + CLI utilities ---
-    fastfetch
-    htop
-    ripgrep
-    fd
-    # bat, eza, fzf managed via programs.X below
-    jq
-    unzip
-    ouch
+      # --- Development ---
+      go
+      nodejs_22
+      nixd
+      gh
+      pnpm
+      bun
 
-    # --- Development ---
-    go
-    nodejs_22
-    nixd
-    gh
-    pnpm
-    bun
-
-    # --- General other stuff ---
-    cameractrls-gtk4
-    discord
-    mission-center
-    prismlauncher
-    hey-mail
-    ungoogled-chromium
-    mixxx
-    # Workaround: Modrinth (WebKitGTK) crashes under Wayland on Hyprland via the
-    # wp_linux_drm_syncobj protocol ("Missing acquire timeline"), showing a grey
-    # window then closing. Disable WebKit's DMA-BUF renderer so it runs natively.
-    (pkgs.symlinkJoin {
-      name = "modrinth-app";
-      paths = [ pkgs.modrinth-app ];
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        rm -f $out/bin/ModrinthApp
-        makeWrapper ${pkgs.modrinth-app}/bin/ModrinthApp $out/bin/ModrinthApp \
-          --set WEBKIT_DISABLE_DMABUF_RENDERER 1
-      '';
-    })
-  ];
+      # --- General other stuff ---
+      cameractrls-gtk4
+      discord
+      mission-center
+      prismlauncher
+      hey-mail
+      ungoogled-chromium
+      mixxx
+    ]
+    ++ lib.optionals isHyprland [
+      hyprshot
+      hyprshutdown
+      hyprsysteminfo
+      hyprcursor
+      hyprpicker
+      # Workaround: Modrinth (WebKitGTK) crashes under Wayland on Hyprland via
+      # wp_linux_drm_syncobj. Disable WebKit's DMA-BUF renderer in this profile.
+      (pkgs.symlinkJoin {
+        name = "modrinth-app";
+        paths = [ pkgs.modrinth-app ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          rm -f $out/bin/ModrinthApp
+          makeWrapper ${pkgs.modrinth-app}/bin/ModrinthApp $out/bin/ModrinthApp \
+            --set WEBKIT_DISABLE_DMABUF_RENDERER 1
+        '';
+      })
+    ]
+    ++ lib.optionals isNiri [
+      modrinth-app
+      swaylock
+      swaybg
+      xwayland-satellite
+    ];
 
   programs.home-manager.enable = true;
 
