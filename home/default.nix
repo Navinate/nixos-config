@@ -69,6 +69,7 @@ in
       hey-mail
       ungoogled-chromium
       mixxx
+      rpi-imager
     ]
     ++ lib.optionals isHyprland [
       hyprshot
